@@ -12,9 +12,11 @@
 var url = require('url');
 var querystring = require('querystring');
 var express = require('express');
+var bodyParser = require('body-parser');
 var Unblocker = require('unblocker');
 var Transform = require('stream').Transform;
 var youtube = require('unblocker/examples/youtube/youtube.js')
+var { encryptionRouter } = require('./encryption');
 
 var app = express();
 
@@ -76,6 +78,9 @@ app.get("/no-js", function(req, res) {
     // and redirect the user to /proxy/url
     res.redirect(unblockerConfig.prefix + site);
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/', encryptionRouter);
 
 const port = process.env.PORT || process.env.VCAP_APP_PORT || 8080;
 

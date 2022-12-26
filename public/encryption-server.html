@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Server-side encryption</title>
+</head>
+<style>
+	body {
+		font-family: 'Helvetica', 'Arial', 'sans-serif';
+		color: black;
+		font-size: 11pt;
+	}
+
+	a,
+	a:link,
+	a:visited,
+	a:active {
+		color: blue;
+		text-decoration: underline;
+	}
+
+	a:hover {
+		cursor: pointer;
+		color: red;
+	}
+
+	.container {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.divTablefullwidth {
+		display: table;
+		width: 100%;
+	}
+
+	.divTable {
+		display: table;
+	}
+
+	.divTableRow {
+		display: table-row;
+	}
+
+	.divTableCell {
+		display: table-cell;
+		padding: 3px 3px;
+	}
+
+	.divTableBody {
+		display: table-row-group;
+	}
+</style>
+
+<body>
+	<div class=container>
+		<div class="divTablefullwidth">
+			<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell" style="float: left;">
+						<h1>Server-side encryption</h1>
+						<h4>Produces the same format as <a href="encryption.html">Web Browser Based File Encryption / Decryption</a>.
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class=container>
+		<hr>
+	</div>
+
+	<div class="container">
+		<div class="divTable">
+			<form action="dl" method="post">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell">URL</div>
+						<div class="divTableCell"><input id=txtUrl name=url type=url size=30 value='' required></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Password</div>
+						<div class="divTableCell"><input id=txtEncpassphrase type=password size=30 value='' required>
+						</div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Password (retype)</div>
+						<div class="divTableCell"><input id=txtEncpassphraseretype name=password
+								oninput=javascript:checkRetype() type=password size=30 value='' required></div>
+					</div>
+					<div class="divTableRow">
+						<button id=btnSubmit type=submit>Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<BR>
+</body>
+
+</html>
+
+<script type="text/javascript">
+	function checkRetype() {
+		if (txtEncpassphrase.value !== txtEncpassphraseretype.value) {
+			txtEncpassphraseretype.setCustomValidity("Passwords don't match")
+		} else {
+			txtEncpassphraseretype.setCustomValidity('')
+		}
+	}
+</script>
